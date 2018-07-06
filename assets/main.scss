@@ -2,4 +2,49 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
-@import "minima";
+@import "neat";
+
+.site-header {
+  @include grid-container;
+  background-color: #364159;
+  border-bottom: solid 5px #396880;
+  padding-top: 5px;
+  .column {
+    @include grid-column(1);
+  }
+}
+
+.main-background {
+  @include grid-container;
+  .column {
+    @include grid-column(12);
+    margin-left: 0px;
+    width: inherit;
+    img {
+      max-width:100%;
+      max-height:100%;
+    }
+  }
+}
+
+$content-grid: (
+  columns: 12,
+  gutter: 8rem,
+);
+
+.page-content {
+  .wrapper {
+    @include grid-container;
+    .column {
+      @include grid-column(12, $content-grid);
+    }
+  }
+}
+
+body {
+  margin: 0px;
+  background-image: url(/assets/images/body_background.png);
+  background-repeat: repeat-y;
+  background-size: 100%;
+  background-position: 0px 20px;
+}
