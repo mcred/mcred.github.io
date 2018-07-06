@@ -17,7 +17,16 @@
 <script type="application/ld+json">
 {"description":"You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.","@type":"BlogPosting","url":"http://mcred.io/jekyll/update/2018/07/06/welcome-to-jekyll.html","headline":"Welcome to Jekyll!","dateModified":"2018-07-06T14:46:53+00:00","datePublished":"2018-07-06T14:46:53+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://mcred.io/jekyll/update/2018/07/06/welcome-to-jekyll.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://mcred.io/feed.xml" title="mcred.io" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://mcred.io/feed.xml" title="mcred.io" /><script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/js/loadTimePalette.js"></script>
+  <script type="text/javascript">
+    timePalette.load();
+    document.write(timePalette.getCss());
+  </script>
+</head>
 <body><header class="site-header" role="banner">
   <div id="logo" class="column">
     <a class="site-title" rel="author" href="/">
@@ -28,7 +37,8 @@
 
 <div class="main-background">
     <div class="column">
-      <img src="/assets/images/main-background.png" alt="main-background">
+      <!--<img src="/assets/images/main-background.png" alt="main-background">-->
+      <script>document.write(timePalette.getBackground());</script>
     </div>
 </div>
 

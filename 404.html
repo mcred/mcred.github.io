@@ -15,7 +15,16 @@
 <script type="application/ld+json">
 {"description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@type":"WebPage","url":"http://mcred.io/404.html","headline":"mcred.io","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://mcred.io/feed.xml" title="mcred.io" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://mcred.io/feed.xml" title="mcred.io" /><script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/js/loadTimePalette.js"></script>
+  <script type="text/javascript">
+    timePalette.load();
+    document.write(timePalette.getCss());
+  </script>
+</head>
 <body><header class="site-header" role="banner">
   <div id="logo" class="column">
     <a class="site-title" rel="author" href="/">
@@ -26,7 +35,8 @@
 
 <div class="main-background">
     <div class="column">
-      <img src="/assets/images/main-background.png" alt="main-background">
+      <!--<img src="/assets/images/main-background.png" alt="main-background">-->
+      <script>document.write(timePalette.getBackground());</script>
     </div>
 </div>
 
