@@ -1,0 +1,22 @@
+body {
+    background-image: url(../images/Background-Tile-Night-complete.png);
+}
+
+.header {
+    background-color: #364159;
+    border-bottom: solid 5px #396880;
+}
+
+.main-nav ul li a {
+    color: #396880;
+}
+
+/*Active dropdown nav item */
+.main-nav ul li:hover > a {
+    color: #ffcf40;
+}
+
+/* Selected Dropdown nav item */
+.main-nav ul li.selected > a {
+    color: #ffcf40;
+}

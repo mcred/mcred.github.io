@@ -1,0 +1,200 @@
+/* Core Stuff */
+@font-face {
+    font-family: Grindaga;
+    src: url(../fonts/grindaga.woff);
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #606d6e;
+    background-image: url(../images/body_background.png);
+    background-repeat: repeat-y;
+    background-size: 100%;
+    background-position: 0px 8px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Grindaga;
+    text-transform: uppercase;
+    color: #454B4D;
+}
+
+a {
+    color: #1F8CD6;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #175E91;
+}
+
+pre {
+    background: #F0F0F0;
+    margin: 1rem 0;
+    border-radius: 2px;
+}
+
+blockquote {
+    border-left: 10px solid #eee;
+    margin: 0;
+    padding: 0 2rem;
+}
+
+/* Utility Classes */
+.wrapper {
+    margin: 0 3rem;
+}
+
+.padding {
+    padding: 3rem 1rem;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+/* Content Styling */
+.header .padding {
+    padding: 5px 5px 2px 5px;
+}
+
+.header {
+    height: 82px;
+    background-color: #364159;
+    color: #eee;
+    border-bottom: solid 5px #396880;
+}
+
+.header a {
+    color: #fff;
+}
+
+.header .logo {
+    width: 226px;
+    height: 70px;
+    display: block;
+}
+
+.main-background{
+    margin: 0px 0px -32px 0px;
+    padding: 0px 0px 0px 0px;
+    width: 100%;
+    height: auto;
+}
+.main-background img {
+    width: 100%;
+    height: auto;
+}
+#body{
+    padding: 0 10%;
+}
+.footer {
+}
+
+/* Menu Settings */
+.main-nav ul {
+    text-align: center;
+    letter-spacing: -1em;
+    margin: 5px 0px 0px 0px;
+    padding: 0;
+}
+
+.main-nav ul li {
+    display: inline-block;
+    letter-spacing: normal;
+}
+
+.main-nav ul li a {
+    font-family: Grindaga;
+    text-transform: uppercase;
+    position: relative;
+    display: block;
+    font-size: 1.75vw;
+    line-height: 4vw;
+    color: #396880;
+    padding: 0 1.5vw;
+    white-space: nowrap;
+    text-shadow: 3px 3px #2e2e33;
+    border-right: solid 4px #2e2e33;
+}
+
+/*Active dropdown nav item */
+.main-nav ul li:hover > a {
+    color: #ffcf40;
+}
+
+/* Selected Dropdown nav item */
+.main-nav ul li.selected > a {
+    color: #ffcf40;
+}
+
+/* Dropdown CSS */
+.main-nav ul li {position: relative;}
+
+.main-nav ul li ul {
+    position: absolute;
+    background-color: #1F8DD6;
+    min-width: 100%;
+    text-align: left;
+    z-index: 999;
+
+    display: none;
+}
+.main-nav ul li ul li {
+    display: block;
+}
+
+/* Dropdown CSS */
+.main-nav ul li ul ul {
+    left: 100%;
+    top: 0;
+}
+
+/* Active on Hover */
+.main-nav li:hover > ul {
+    display: block;
+}
+
+/* Child Indicator */
+.main-nav .has-children > a {
+    padding-right: 30px;
+}
+.main-nav .has-children > a:after {
+    font-family: FontAwesome;
+    content: '\f107';
+    position: absolute;
+    display: inline-block;
+    right: 8px;
+    top: 0;
+}
+
+.main-nav .has-children .has-children > a:after {
+    content: '\f105';
+}
