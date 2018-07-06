@@ -4,6 +4,11 @@
 
 @import "neat";
 
+@font-face {
+    font-family: Grindaga;
+    src: url(/assets/fonts/grindaga.woff);
+}
+
 .site-header {
   @include grid-container;
   background-color: #364159;
@@ -47,4 +52,20 @@ body {
   background-repeat: repeat-y;
   background-size: 100%;
   background-position: 0px 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Grindaga;
+    text-transform: uppercase;
+    color: #454B4D;
+}
+
+a {
+    color: #1F8CD6;
+    text-decoration: none;
 }
