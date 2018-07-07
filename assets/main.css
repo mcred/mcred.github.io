@@ -145,14 +145,34 @@
   margin-left: 20px;
   text-align: center; }
 
-.page-content::after {
+.full-width::after {
   clear: both;
   content: "";
   display: block; }
-.page-content .wrapper {
+.full-width .wrapper {
   width: calc(100% - 24vw);
   float: left;
   margin-left: 12vw; }
+
+.half-wrapper::after {
+  clear: both;
+  content: "";
+  display: block; }
+.half-wrapper .wrapper {
+  width: calc(100% - 20vw);
+  float: left;
+  margin-left: 10vw; }
+
+.half-width::after {
+  clear: both;
+  content: "";
+  display: block; }
+.half-width .column {
+  width: calc(50% - 1.5vw);
+  float: left;
+  margin-left: 1vw; }
+  .half-width .column h2 {
+    padding-left: .6em; }
 
 body {
   margin: 0px;
