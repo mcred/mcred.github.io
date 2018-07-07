@@ -8,6 +8,13 @@ baseurl: ""
 url: "http://mcred.io"
 github_username:  mcred
 
+plugins_dir: ./_plugins
+
+jekyll_get:
+  - data: github
+    json: 'https://api.github.com/users/mcred/repos'
+    cache: false
+
 # Build settings
 markdown: kramdown
 plugins:

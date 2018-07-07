@@ -68,6 +68,15 @@ $on-laptop:        800px !default;
   }
 }
 
+
+.footer {
+  @include grid-container;
+  .column {
+    @include grid-column(12);
+    text-align:center;
+  }
+}
+
 $content-grid: (
   columns: 12,
   gutter: 8rem,
@@ -84,6 +93,7 @@ $content-grid: (
 
 body {
   margin: 0px;
+  font-family: $base-font-family;
   background-image: url(/assets/images/body_background.png);
   background-repeat: repeat-y;
   background-size: 100%;
