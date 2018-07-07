@@ -35,7 +35,6 @@ module Jekyll_Xml_Source
       config.each do |data|
         if data['cache']
           site.data[data['data']] = loadFromCache(data_source, data['data'])
-          return
         end
 
         if site.data[data['data']].nil?
