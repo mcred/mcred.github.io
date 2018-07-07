@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<article class="articles column">
+
+  <header class="articles-header">
+    <h1 class="articles-title">{{ page.title | escape }}</h1>
+  </header>
+
+  <div class="articles-content">
+    {% assign posts = site.data.medium.rss.channel.item | sort: 'title' %}
+    {% for post in posts %}
+      <h2><a href="{{ post.link }}" target="_blank">{{ post.title }}</a></h2>
+      <p>{{ post.encoded | strip_html | truncatewords:40 }}</p>
+    {% endfor %}
+  </div>
+
+</article>

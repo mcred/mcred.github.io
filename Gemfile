@@ -8,6 +8,7 @@ group :jekyll_plugins do
   gem "neat"
   gem "json"
   gem "hash-joiner"
+  gem "activesupport"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
