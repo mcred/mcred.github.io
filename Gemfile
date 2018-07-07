@@ -9,6 +9,7 @@ group :jekyll_plugins do
   gem "json"
   gem "hash-joiner"
   gem "activesupport"
+  gem "bourbon"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

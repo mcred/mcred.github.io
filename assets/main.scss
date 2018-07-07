@@ -1,7 +1,9 @@
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
+@charset "utf-8";
 
+@import "bourbon";
 @import "neat";
 
 @font-face {
@@ -45,6 +47,9 @@ $on-laptop:        800px !default;
   font-size: $base-font-size * $ratio;
 }
 
+@import "grindaga";
+@import "cards";
+
 .header {
   @include grid-container;
   background-color: $background-color;
@@ -68,7 +73,6 @@ $on-laptop:        800px !default;
   }
 }
 
-
 .footer {
   @include grid-container;
   .column {
@@ -79,21 +83,20 @@ $on-laptop:        800px !default;
 
 $content-grid: (
   columns: 12,
-  gutter: 8rem,
+  gutter: 12vw,
 );
 
 .page-content {
+  @include grid-container;
   .wrapper {
-    @include grid-container;
-    .column {
-      @include grid-column(12, $content-grid);
-    }
+    @include grid-column(12, $content-grid);
   }
 }
 
 body {
   margin: 0px;
   font-family: $base-font-family;
+  color: $grey-color;
   background-image: url(/assets/images/body_background.png);
   background-repeat: repeat-y;
   background-size: 100%;
@@ -114,91 +117,4 @@ h6 {
 a {
     color: $link-color;
     text-decoration: none;
-}
-
-//From Minima with minor changes
-.site-nav {
-  float: right;
-  line-height: $base-line-height * $base-font-size * 2.25;
-
-  .nav-trigger {
-      display: none;
-  }
-
-  .menu-icon {
-    display: none;
-  }
-
-  .page-link {
-    font-family: Grindaga;
-    color: $border-color;
-    line-height: 4vw;
-    text-transform: uppercase;
-    position: relative;
-    font-size: 1.75vw;
-    padding: 0 1.5vw;
-    white-space: nowrap;
-    text-shadow: 3px 3px #2e2e33;
-    border-right: solid 4px #2e2e33;
-
-    &:hover {
-        color: $brand-color;
-    }
-    &.selected {
-        color: $brand-color;
-    }
-  }
-
-  @include media-query($on-palm) {
-    position: absolute;
-    top: 9px;
-    right: $spacing-unit / 2;
-    background-color: $border-color;
-    border: 1px solid $brand-color;
-    border-radius: 5px;
-    text-align: right;
-
-    label[for="nav-trigger"] {
-      display: block;
-      float: right;
-      width: 36px;
-      height: 36px;
-      z-index: 2;
-      cursor: pointer;
-    }
-
-    .menu-icon {
-      display: block;
-      float: right;
-      width: 36px;
-      height: 26px;
-      line-height: 0;
-      padding-top: 10px;
-      text-align: center;
-
-      > svg {
-        fill: $brand-color;
-      }
-    }
-
-    input ~ .trigger {
-      clear: both;
-      display: none;
-    }
-
-    input:checked ~ .trigger {
-      display: block;
-      padding-bottom: 5px;
-    }
-
-    .page-link {
-      display: block;
-      padding: 5px 10px;
-
-      &:not(:last-child) {
-        margin-right: 0;
-      }
-      margin-left: 20px;
-    }
-  }
 }
