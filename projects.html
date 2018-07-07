@@ -1,11 +1,10 @@
 ---
 layout: default
+title: Projects
+permalink: /projects/
 ---
-<article class="projects column">
 
-  <header class="projects-header">
-    <h1 class="projects-title">{{ page.title | escape }}</h1>
-  </header>
+<article class="projects column">
 
   <div class="projects-content">
     {% assign public_repos = site.data.github | sort: 'name' %}
