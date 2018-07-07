@@ -6,10 +6,6 @@ permalink: /articles/
 
 <article class="articles">
 
-  <header class="articles-header">
-    <h1 class="articles-title">{{ page.title | escape }}</h1>
-  </header>
-
   <div class="articles-content">
     {% assign posts = site.data.medium.rss.channel.item | sort: 'title' %}
     {% for post in posts %}

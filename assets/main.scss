@@ -81,15 +81,42 @@ $on-laptop:        800px !default;
   }
 }
 
-$content-grid: (
+$full-width: (
   columns: 12,
   gutter: 12vw,
 );
 
-.page-content {
+.full-width {
   @include grid-container;
   .wrapper {
-    @include grid-column(12, $content-grid);
+    @include grid-column(12, $full-width);
+  }
+}
+
+$half-wrapper: (
+  columns: 1,
+  gutter: 10vw,
+);
+
+.half-wrapper {
+  @include grid-container;
+  .wrapper {
+    @include grid-column(1, $half-wrapper);
+  }
+}
+
+$half-width: (
+  columns: 2,
+  gutter: 1vw,
+);
+
+.half-width {
+  @include grid-container;
+  .column {
+    @include grid-column(1, $half-width);
+    h2 {
+     padding-left: .6em;
+    }
   }
 }
 

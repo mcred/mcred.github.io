@@ -1,41 +1,46 @@
 ---
-layout: default
+layout: halfwidth
 ---
 
-<div class="cards">
-  <div class="card">
-    <div class="card-image">
-      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
-    </div>
-    <div class="card-header">
-      First Card
-    </div>
-    <div class="card-copy">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
-    </div>
-  </div>
+<div class="half-width">
+  <div class="column">
 
-  <div class="card">
-    <div class="card-image">
-      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-4.png" alt="">
+    <h2>Featured Projects</h2>
+    <div class="cards">
+      {%- for project in site.data.featured.projects -%}
+        <div class="card">
+          <div class="card-image">
+            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+          </div>
+          <div class="card-header">
+            {{ project.name }}
+          </div>
+          <div class="card-copy">
+            <p>{{ project.description }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
     </div>
-    <div class="card-header">
-      Another Card
-    </div>
-    <div class="card-copy">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-image">
-      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-3.png" alt="">
-    </div>
-    <div class="card-header">
-      The Last Card
-    </div>
-    <div class="card-copy">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-    </div>
   </div>
-</div>
+  <div class="column">
+
+    <h2>Featured Articles</h2>
+    <div class="cards">
+      {%- for article in site.data.featured.articles -%}
+        <div class="card">
+          <div class="card-image">
+            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+          </div>
+          <div class="card-header">
+            {{ article.name }}
+          </div>
+          <div class="card-copy">
+            <p>{{ article.description }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+<div>

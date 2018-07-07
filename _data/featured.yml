@@ -1,0 +1,8 @@
+articles:
+  - name: "article 1"
+    description: "article 1 description"
+    link: "linkto"
+projects:
+  - name: "project 1"
+    description: "project 1 description"
+    link: "linkto"
