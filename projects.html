@@ -10,8 +10,8 @@ permalink: /projects/
     {% assign public_repos = site.data.github | sort: 'name' %}
     {% for repo in public_repos %}
       {% if repo.fork == false %}
-        <h2><a href="{{ repo.html_url }}">{{ repo.name }}</a></h2>
-        <h5>{{ repo.description }}</h5>
+        <h1><a href="{{ repo.html_url }}">{{ repo.name }}</a></h1>
+        <h4>{{ repo.description }}</h4>
         {% if repo.language %} {{ repo.language }} {% endif %}
         <i class="fa fa-star pl-md-2 " aria-hidden="true"></i> {{ repo.stargazers_count }}
         <i class="fa fa-code-branch pl-md-2" aria-hidden="true"></i> {{ repo.forks_count }}
