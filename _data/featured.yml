@@ -1,8 +1,2 @@
-articles:
-  - name: "article 1"
-    description: "article 1 description"
-    link: "linkto"
-projects:
-  - name: "project 1"
-    description: "project 1 description"
-    link: "linkto"
+articles: ["https://medium.com/p/c5e1f07fb167","https://medium.com/p/dc8d5890271e"]
+projects: [95935512,84859476,26488835,78556709]

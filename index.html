@@ -7,18 +7,22 @@ layout: halfwidth
 
     <h2>Featured Projects</h2>
     <div class="cards">
-      {%- for project in site.data.featured.projects -%}
+      {%- for project in site.data.github -%}
+        {%- if site.data.featured.projects contains project.id -%}
         <div class="card">
           <div class="card-image">
-            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+            <i class="fab fa-{{project.language | downcase}} fa-7x"></i><br />
+            <i class="fa fa-star fa-lg" aria-hidden="true"></i> {{ project.stargazers_count }}
+            <i class="fa fa-code-branch fa-lg" aria-hidden="true"></i> {{ project.forks_count }}
           </div>
           <div class="card-header">
-            {{ project.name }}
+            <a href="{{ project.html_url }}" target="_blank">{{ project.name | capitalize }}</a>
           </div>
           <div class="card-copy">
             <p>{{ project.description }}</p>
           </div>
         </div>
+        {%- endif -%}
       {%- endfor -%}
     </div>
 
@@ -27,18 +31,23 @@ layout: halfwidth
 
     <h2>Featured Articles</h2>
     <div class="cards">
-      {%- for article in site.data.featured.articles -%}
-        <div class="card">
-          <div class="card-image">
-            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+      {%- assign articles = site.data.medium.rss.channel.item | sort: 'pubDate' | reverse -%}
+      {%- for article in articles -%}
+        {%- if site.data.featured.articles contains article.guid -%}
+          <div class="card">
+            <div class="card-image">
+              {%- for cat in article.category -%}
+                <h4>{{ cat }}</h4>
+              {%- endfor -%}
+            </div>
+            <div class="card-header">
+              <a href="{{ article.guid }}" target="_blank">{{ article.title }}</a>
+            </div>
+            <div class="card-copy">
+              <p>{{ article.encoded | strip_html | truncatewords:13 }}</p>
+            </div>
           </div>
-          <div class="card-header">
-            {{ article.name }}
-          </div>
-          <div class="card-copy">
-            <p>{{ article.description }}</p>
-          </div>
-        </div>
+        {%- endif -%}
       {%- endfor -%}
     </div>
 
