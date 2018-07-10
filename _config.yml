@@ -1,10 +1,11 @@
 title: mcred.io
 email: mcred@grindaga.com
 description: >-
-  Writing code and taking names. Well, maybe just writing code. 
+  Writing code and taking names. Well, maybe just writing code.
 baseurl: ""
 url: "http://mcred.io"
 github_username:  mcred
+google_analytics: UA-68443600-2
 
 plugins_dir: ./_plugins
 
