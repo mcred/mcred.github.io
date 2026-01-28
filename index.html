@@ -1,55 +1,405 @@
----
-layout: halfwidth
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mcred.io</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-<div class="half-width">
-  <div class="column">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <h2>Featured Projects</h2>
-    <div class="cards">
-      {%- for project in site.data.github -%}
-        {%- if site.data.featured.projects contains project.id -%}
-        <div class="card">
-          <div class="card-image">
-            <i class="fab fa-{{project.language | downcase}} fa-7x"></i><br />
-            <i class="fa fa-star fa-lg" aria-hidden="true"></i> {{ project.stargazers_count }}
-            <i class="fa fa-code-branch fa-lg" aria-hidden="true"></i> {{ project.forks_count }}
-          </div>
-          <div class="card-header">
-            <a href="{{ project.html_url }}" target="_blank">{{ project.name | capitalize }}</a>
-          </div>
-          <div class="card-copy">
-            <p>{{ project.description }}</p>
-          </div>
+        :root {
+            --phosphor-green: #33ff33;
+            --phosphor-dim: #1a8a1a;
+            --phosphor-glow: #00ff0080;
+            --crt-bg: #0a0a0a;
+            --bezel-color: #2a2a28;
+            --bezel-dark: #1a1a18;
+            --bezel-light: #3a3a38;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            font-family: 'VT323', monospace;
+            overflow: hidden;
+        }
+
+        .room {
+            position: relative;
+            padding: 40px;
+        }
+
+        /* Desk surface hint */
+        .room::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 40px;
+            background: linear-gradient(180deg, #2a2520 0%, #1a1510 100%);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .monitor {
+            position: relative;
+            background: var(--bezel-color);
+            border-radius: 20px;
+            padding: 30px 35px 50px 35px;
+            box-shadow:
+                    inset 2px 2px 4px var(--bezel-light),
+                    inset -2px -2px 4px var(--bezel-dark),
+                    0 30px 60px rgba(0,0,0,0.6),
+                    0 0 100px rgba(51, 255, 51, 0.1);
+        }
+
+        /* Monitor brand badge */
+        .monitor::before {
+            content: 'mcred.io';
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #666;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Power LED */
+        .monitor::after {
+            content: '';
+            position: absolute;
+            bottom: 18px;
+            right: 40px;
+            width: 8px;
+            height: 8px;
+            background: var(--phosphor-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--phosphor-green), 0 0 20px var(--phosphor-green);
+            animation: led-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes led-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .screen-container {
+            position: relative;
+            background: #000;
+            border-radius: 15px;
+            padding: 8px;
+            box-shadow:
+                    inset 0 0 50px rgba(0,0,0,0.8),
+                    inset 0 0 10px rgba(0,0,0,0.9);
+        }
+
+        .screen {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            background: var(--crt-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            /* CRT curvature simulation */
+            box-shadow:
+                    inset 0 0 100px rgba(0,0,0,0.5),
+                    inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        /* Scanlines */
+        .screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.2) 0px,
+                    rgba(0, 0, 0, 0.2) 1px,
+                    transparent 1px,
+                    transparent 3px
+            );
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Screen flicker and glow */
+        .screen::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                    ellipse at center,
+                    rgba(51, 255, 51, 0.03) 0%,
+                    transparent 70%
+            );
+            pointer-events: none;
+            z-index: 5;
+            animation: flicker 0.1s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.98; }
+            25%, 75% { opacity: 0.99; }
+        }
+
+        /* Vignette effect */
+        .vignette {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                    ellipse at center,
+                    transparent 50%,
+                    rgba(0, 0, 0, 0.4) 100%
+            );
+            pointer-events: none;
+            z-index: 8;
+            border-radius: 10px;
+        }
+
+        /* Screen reflection */
+        .reflection {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 30%;
+            height: 20%;
+            background: linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.03) 0%,
+                    transparent 100%
+            );
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        .terminal {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            height: 100%;
+        }
+
+        .prompt {
+            color: var(--phosphor-green);
+            font-size: 24px;
+            line-height: 1.6;
+            text-shadow:
+                    0 0 5px var(--phosphor-green),
+                    0 0 10px var(--phosphor-glow),
+                    0 0 20px var(--phosphor-glow);
+            word-break: break-word;
+            text-align: left;
+            width: 100%;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 14px;
+            height: 24px;
+            background: var(--phosphor-green);
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+            box-shadow:
+                    0 0 5px var(--phosphor-green),
+                    0 0 10px var(--phosphor-glow);
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* CRT turn-on effect */
+        .crt-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--crt-bg);
+            z-index: 20;
+            border-radius: 10px;
+            animation: crt-on 1.5s ease-out forwards;
+        }
+
+        @keyframes crt-on {
+            0% {
+                opacity: 1;
+                transform: scaleY(0.01) scaleX(0.5);
+            }
+            20% {
+                opacity: 1;
+                transform: scaleY(0.01) scaleX(1);
+            }
+            40% {
+                opacity: 1;
+                transform: scaleY(1) scaleX(1);
+            }
+            60% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        /* Horizontal line during turn-on */
+        .crt-overlay::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--phosphor-green);
+            box-shadow: 0 0 20px var(--phosphor-green);
+            transform: translateY(-50%);
+            animation: line-expand 0.5s ease-out forwards;
+        }
+
+        @keyframes line-expand {
+            0% {
+                transform: translateY(-50%) scaleX(0);
+            }
+            100% {
+                transform: translateY(-50%) scaleX(1);
+            }
+        }
+
+        /* Ambient glow on the "wall" behind */
+        .room::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 300px;
+            background: radial-gradient(
+                    ellipse at center,
+                    rgba(51, 255, 51, 0.08) 0%,
+                    transparent 70%
+            );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .screen {
+                width: 90vw;
+                height: 60vw;
+                max-width: 600px;
+                max-height: 400px;
+            }
+
+            .prompt {
+                font-size: 18px;
+            }
+
+            .cursor {
+                width: 10px;
+                height: 18px;
+            }
+
+            .terminal {
+                padding: 20px;
+            }
+
+            .monitor {
+                padding: 20px 25px 40px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="room">
+    <div class="monitor">
+        <div class="screen-container">
+            <div class="screen">
+                <div class="crt-overlay"></div>
+                <div class="vignette"></div>
+                <div class="reflection"></div>
+                <div class="terminal">
+                    <div class="prompt">
+                        <span id="text"></span><span class="cursor"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-        {%- endif -%}
-      {%- endfor -%}
     </div>
+</div>
 
-  </div>
-  <div class="column">
+<script>
+    const text = "All work and no play makes Homer something something...";
+    const textElement = document.getElementById('text');
 
-    <h2>Featured Articles</h2>
-    <div class="cards">
-      {%- assign articles = site.data.medium.rss.channel.item | sort: 'pubDate' | reverse -%}
-      {%- for article in articles -%}
-        {%- if site.data.featured.articles contains article.guid -%}
-          <div class="card">
-            <div class="card-image">
-              {%- for cat in article.category -%}
-                <h4>{{ cat }}</h4>
-              {%- endfor -%}
-            </div>
-            <div class="card-header">
-              <a href="{{ article.guid }}" target="_blank">{{ article.title }}</a>
-            </div>
-            <div class="card-copy">
-              <p>{{ article.encoded | strip_html | truncatewords:13 }}</p>
-            </div>
-          </div>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
+    const INITIAL_BLINK_TIME = 3000;  // Time cursor blinks before typing starts
+    const TYPE_SPEED = 100;            // Milliseconds between each character typed
+    const PAUSE_AFTER_TYPING = 2000;   // Pause after finishing the text
+    const DELETE_SPEED = 50;           // Milliseconds between each character deleted
+    const PAUSE_AFTER_DELETE = 1500;   // Pause after deleting before restarting
 
-  </div>
-<div>
+    let currentIndex = 0;
+    let isDeleting = false;
+    let timeoutId = null;
+
+    function type() {
+        if (!isDeleting) {
+            // Typing forward
+            if (currentIndex < text.length) {
+                textElement.textContent = text.substring(0, currentIndex + 1);
+                currentIndex++;
+                timeoutId = setTimeout(type, TYPE_SPEED);
+            } else {
+                // Finished typing, pause then start deleting
+                isDeleting = true;
+                timeoutId = setTimeout(type, PAUSE_AFTER_TYPING);
+            }
+        } else {
+            // Deleting
+            if (currentIndex > 0) {
+                currentIndex--;
+                textElement.textContent = text.substring(0, currentIndex);
+                timeoutId = setTimeout(type, DELETE_SPEED);
+            } else {
+                // Finished deleting, pause then start typing again
+                isDeleting = false;
+                timeoutId = setTimeout(type, PAUSE_AFTER_DELETE);
+            }
+        }
+    }
+
+    // Wait for CRT turn-on animation, then blink cursor, then start typing
+    setTimeout(() => {
+        setTimeout(type, INITIAL_BLINK_TIME);
+    }, 1500);
+</script>
+</body>
+</html>
